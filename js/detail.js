@@ -12,8 +12,7 @@ function renderDetail() {
       <div class="text-center py-20">
         <p class="text-gray-400 text-lg">Task not found</p>
         <a href="#/" class="text-indigo-600 text-sm hover:underline mt-2 inline-block">&larr; Back to overview</a>
-      </div>
-    `;
+      </div>`;
   }
 
   const activeTab = store.activeTab || 'chat';
@@ -40,9 +39,7 @@ function renderDetail() {
           <h1 class="text-xl font-bold text-gray-900">${escapeHtml(task.title || task.id)}</h1>
           <p class="text-xs font-mono text-gray-400 mt-1">${task.id}</p>
         </div>
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium status-${task.status}">
-          ${task.status}
-        </span>
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium status-${task.status}">${task.status}</span>
       </div>
 
       <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500 mb-5">
@@ -71,16 +68,14 @@ function renderDetail() {
           <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Codex ${turns.codex || 0}</span>
           <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> Human ${turns.human || 0}</span>
         </div>
-      </div>
-      ` : ''}
+      </div>` : ''}
 
       <!-- Plan Round Info -->
       ${task.planRound ? `
       <div class="mt-3 flex gap-4 text-xs text-gray-500">
         <span>Plan Rounds — Claude: ${task.planRound.claude || 0}, Codex: ${task.planRound.codex || 0}</span>
         ${task.planAgreed ? `<span>Agreed — Claude: ${task.planAgreed.claude ? 'Yes' : 'No'}, Codex: ${task.planAgreed.codex ? 'Yes' : 'No'}</span>` : ''}
-      </div>
-      ` : ''}
+      </div>` : ''}
     </div>
 
     <!-- Tabs -->
@@ -108,22 +103,14 @@ function tabBtn(id, label, activeTab) {
 
 function renderTabContent(task, tab) {
   switch (tab) {
-    case 'chat':
-      return renderChatFeed(task.chat);
-    case 'task':
-      return renderMarkdown(task.taskMd);
-    case 'plan':
-      return renderMarkdown(task.planDiscussionMd);
-    case 'review':
-      return renderReviewMd(task.claudeReviewMd);
-    case 'impl':
-      return renderMarkdown(task.codexImplMd);
-    case 'decision':
-      return renderMarkdown(task.decisionMd);
-    case 'handoffs':
-      return renderHandoffTimeline(task.handoffs);
-    default:
-      return '';
+    case 'chat':     return renderChatFeed(task.chat);
+    case 'task':     return renderMarkdown(task.taskMd);
+    case 'plan':     return renderMarkdown(task.planDiscussionMd);
+    case 'review':   return renderReviewMd(task.claudeReviewMd);
+    case 'impl':     return renderMarkdown(task.codexImplMd);
+    case 'decision': return renderMarkdown(task.decisionMd);
+    case 'handoffs': return renderHandoffTimeline(task.handoffs);
+    default:         return '';
   }
 }
 
@@ -133,12 +120,6 @@ function renderMarkdown(md) {
   }
   try {
     const html = marked.parse(md);
-    // Schedule highlight after render
-    setTimeout(() => {
-      document.querySelectorAll('.md-content pre code').forEach(block => {
-        hljs.highlightElement(block);
-      });
-    }, 50);
     return `<div class="md-content">${html}</div>`;
   } catch {
     return `<pre class="text-sm text-gray-600 whitespace-pre-wrap">${escapeHtml(md)}</pre>`;
@@ -149,7 +130,6 @@ function renderReviewMd(md) {
   if (!md || md.trim() === '') {
     return '<p class="text-gray-400 text-sm text-center py-8">No review yet.</p>';
   }
-  // Render as markdown then enhance severity tags
   let html = renderMarkdown(md);
   html = html.replace(/\[BLOCKER\]/g, '<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold severity-BLOCKER">BLOCKER</span>');
   html = html.replace(/\[MEDIUM\]/g, '<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold severity-MEDIUM">MEDIUM</span>');

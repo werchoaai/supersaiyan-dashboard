@@ -1,5 +1,5 @@
 {
-  "publishedAt": "2026-02-23T02:34:31Z",
+  "publishedAt": "2026-02-23T02:49:28Z",
   "tasks": [
 {
   "id": "20260222-235418-coord-smoke-test",
@@ -103,7 +103,7 @@
 ],
   "chat": [
 {"timestamp":"2026-02-23T01:23:45Z","from":"system","to":"all","message":"Task created: fix foo/bar & baz\n","isSystem":true}],
-  "stats": {"totalHandoffs":0,"durationMinutes":130,"agentTurns":{"claude":0,"codex":0,"human":0}}
+  "stats": {"totalHandoffs":0,"durationMinutes":145,"agentTurns":{"claude":0,"codex":0,"human":0}}
 }
 ,
 {
