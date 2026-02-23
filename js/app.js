@@ -4,7 +4,7 @@
  */
 
 // ===== Auth =====
-const PASS_HASH = 'b7ba665b4dc5d36da59c8726366416abaad9e4bfb1f406a414ca4a29663208a0';
+const PASS_HASH = 'fe9da700d853d243d31b18fd2ea39d83eb4495ed6dfea73663391f255347281e';
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
