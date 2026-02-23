@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SuperSaiyan Dashboard</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            claude: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' },
+            codex:  { 50: '#ecfdf5', 100: '#d1fae5', 200: '#a7f3d0', 500: '#10b981', 600: '#059669', 700: '#047857' },
+            human:  { 50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 500: '#f59e0b', 600: '#d97706', 700: '#b45309' },
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Marked.js (markdown) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Highlight.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+  <!-- Mermaid.js -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body class="h-full bg-gray-50 font-sans text-gray-900" x-data="dashboard">
+
+  <!-- Navigation -->
+  <nav class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <a href="#/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+          <span class="text-xl font-bold tracking-tight">
+            <span class="text-yellow-400">Super</span><span class="text-orange-400">Saiyan</span>
+          </span>
+          <span class="text-xs text-slate-400 hidden sm:inline">Dual-Agent Dashboard</span>
+        </a>
+        <div class="flex items-center gap-4 text-sm">
+          <span class="text-slate-400" x-show="store.publishedAt" x-text="'Updated ' + timeAgo(store.publishedAt)"></span>
+          <button @click="loadData()" class="text-slate-300 hover:text-white transition-colors" title="Refresh data">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- Loading State -->
+    <div x-show="store.loading" class="flex items-center justify-center py-20">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+      <span class="ml-3 text-gray-500">Loading tasks...</span>
+    </div>
+
+    <!-- Error State -->
+    <div x-show="store.error" class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+      <p class="text-red-600 font-medium" x-text="store.error"></p>
+      <button @click="loadData()" class="mt-3 text-sm text-red-500 hover:text-red-700 underline">Retry</button>
+    </div>
+
+    <!-- Overview Page -->
+    <div x-show="!store.loading && !store.error && store.currentPage === 'overview'">
+      <div x-html="renderOverview()"></div>
+    </div>
+
+    <!-- Detail Page -->
+    <div x-show="!store.loading && !store.error && store.currentPage === 'detail'">
+      <div x-html="renderDetail()"></div>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="/js/components/phase-stepper.js"></script>
+  <script src="/js/components/chat-feed.js"></script>
+  <script src="/js/components/timeline.js"></script>
+  <script src="/js/components/filters.js"></script>
+  <script src="/js/overview.js"></script>
+  <script src="/js/detail.js"></script>
+  <script src="/js/app.js"></script>
+
+</body>
+</html>
