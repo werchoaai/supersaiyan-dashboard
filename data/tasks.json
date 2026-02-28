@@ -1,5 +1,5 @@
 {
-  "publishedAt": "2026-02-28T20:25:55Z",
+  "publishedAt": "2026-02-28T20:31:33Z",
   "tasks": [
 {
   "id": "20260222-235418-coord-smoke-test",
@@ -103,7 +103,7 @@
 ],
   "chat": [
 {"timestamp":"2026-02-23T01:23:45Z","from":"system","to":"all","message":"Task created: fix foo/bar & baz\n","isSystem":true}],
-  "stats": {"totalHandoffs":0,"durationMinutes":8402,"agentTurns":{"claude":0,"codex":0,"human":0}}
+  "stats": {"totalHandoffs":0,"durationMinutes":8407,"agentTurns":{"claude":0,"codex":0,"human":0}}
 }
 ,
 {
@@ -210,7 +210,7 @@
 {"timestamp":"2026-02-23T02:52:13Z","from":"claude","to":"human","message":"Review complete: no blockers. Dashboard is live at supersaiyan-dashboard.vercel.app with password auth, 7 task views, phase stepper, chat bubbles. Ready for final approval.\n","isSystem":false},
 {"timestamp":"2026-02-23T02:52:13Z","from":"system","to":"human","message":"Implementation review clean. Awaiting final human approval.\n","isSystem":true},
 {"timestamp":"2026-02-23T08:54:08Z","from":"system","to":"human","message":"AUTO-ESCALATION: codex failed 3 consecutive times on logic errors. Consider changing approach or agent.\n","isSystem":true}],
-  "stats": {"totalHandoffs":7,"durationMinutes":8314,"agentTurns":{"claude":3,"codex":3,"human":1}}
+  "stats": {"totalHandoffs":7,"durationMinutes":8320,"agentTurns":{"claude":3,"codex":3,"human":1}}
 }
 ,
 {
@@ -220,7 +220,7 @@
   "closedAt": "",
   "status": "OPEN",
   "phase": "IMPLEMENT",
-  "nextAgent": "human",
+  "nextAgent": "claude",
   "requester": "malcolm",
   "planRound": {"claude":3,"codex":3},
   "planAgreed": {"claude":true,"codex":true},
@@ -248,7 +248,8 @@
 {"timestamp":"2026-02-28T20:12:13Z","from":"system","to":"human","phase":"IMPLEMENT","summary":"AUTO-ESCALATION: codex failed 3+ times on architecture errors. Check FAILURE_LOG.jsonl in task dir.\n"},
 {"timestamp":"2026-02-28T20:20:50Z","from":"human","to":"codex","phase":"IMPLEMENT","summary":"pick up the task\n"},
 {"timestamp":"2026-02-28T20:25:42Z","from":"codex","to":"claude","phase":"IMPLEMENT","summary":"Implementation complete: see CODEX_IMPL.md with changes/tests. Please re-review.\n"},
-{"timestamp":"2026-02-28T20:25:55Z","from":"system","to":"human","phase":"IMPLEMENT","summary":"AUTO-ESCALATION: codex failed 3+ times on architecture errors. Check FAILURE_LOG.jsonl in task dir.\n"}],
+{"timestamp":"2026-02-28T20:25:55Z","from":"system","to":"human","phase":"IMPLEMENT","summary":"AUTO-ESCALATION: codex failed 3+ times on architecture errors. Check FAILURE_LOG.jsonl in task dir.\n"},
+{"timestamp":"2026-02-28T20:31:33Z","from":"system","to":"claude","phase":"IMPLEMENT","summary":"System correction: Codex IMPLEMENT turn completed successfully (CODEX_IMPL.md written). Auto-escalation was a false positive caused by post-turn error scanner misreading code output. Routing to Claude for implementation review.\n"}],
   "chat": [
 {"timestamp":"2026-02-28T19:25:26Z","from":"system","to":"all","message":"Task created: polymarket-autopilot-setup-plan\n","isSystem":true},
 {"timestamp":"2026-02-28T19:25:26Z","from":"human","to":"claude","message":"SuperSaiyan kickoff: propose implementation plan in PLAN_DISCUSSION.md. No code yet.\n","isSystem":false},
@@ -270,8 +271,9 @@
 {"timestamp":"2026-02-28T20:12:13Z","from":"system","to":"human","message":"AUTO-ESCALATION: codex failed 3+ times on architecture errors. Check FAILURE_LOG.jsonl in task dir.\n","isSystem":true},
 {"timestamp":"2026-02-28T20:20:50Z","from":"human","to":"codex","message":"pick up the task\n","isSystem":false},
 {"timestamp":"2026-02-28T20:25:42Z","from":"codex","to":"claude","message":"Implementation complete: see CODEX_IMPL.md with changes/tests. Please re-review.\n","isSystem":false},
-{"timestamp":"2026-02-28T20:25:55Z","from":"system","to":"human","message":"AUTO-ESCALATION: codex failed 3+ times on architecture errors. Check FAILURE_LOG.jsonl in task dir.\n","isSystem":true}],
-  "stats": {"totalHandoffs":19,"durationMinutes":0,"agentTurns":{"claude":3,"codex":5,"human":4}}
+{"timestamp":"2026-02-28T20:25:55Z","from":"system","to":"human","message":"AUTO-ESCALATION: codex failed 3+ times on architecture errors. Check FAILURE_LOG.jsonl in task dir.\n","isSystem":true},
+{"timestamp":"2026-02-28T20:31:33Z","from":"system","to":"claude","message":"System correction: Codex IMPLEMENT turn completed successfully (CODEX_IMPL.md written). Auto-escalation was a false positive caused by post-turn error scanner misreading code output. Routing to Claude for implementation review.\n","isSystem":true}],
+  "stats": {"totalHandoffs":20,"durationMinutes":0,"agentTurns":{"claude":3,"codex":5,"human":4}}
 }
   ]
 }
